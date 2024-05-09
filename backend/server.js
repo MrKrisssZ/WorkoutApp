@@ -15,10 +15,12 @@ const app = express()
 //     res.json({mssg: 'Welcome to the app'})
 // })
 
+// To access request and send data to database. Any requests that comes in it looks if it has some body to the request so some data that we are sending to the server, if it does then it passes it and attaches it to the request object so that we can access it in the request handler
+// All requests will pass through the req object
+app.use(express.json())
+
 // middleware is a fancy name for any code that executes between us getting a request on the server and us sending a response
 // global middleware. next means that we have to run at the end of this middleware in order to move on to the next middleware
-// To access request and send data to database. Any requests that comes in it looks if it has some body to the request so some data that we are sending to the server, if it does then it passes it and attaches it to the request object so that we can access it in the request handler
-app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
