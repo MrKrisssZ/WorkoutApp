@@ -4,7 +4,7 @@ require('dotenv').config()
 // get the express package
 const express = require('express')
 const workoutRoutes = require('./routes/workouts')
-
+const mongoose = require('mongoose')
 
 // start up the express app which is running in a node.js environment and a framwork for node that let us create apis
 const app = express()
@@ -27,9 +27,16 @@ app.use((req, res, next) => {
 // when we fire a request to this routes, then I want to use the workoutRoutes which is added to the end of /workouts
 app.use('/api/workouts', workoutRoutes)
 
-
-// listen for requests
-app.listen(process.env.PORT, () => {
-    console.log("Listening on port 4000")
+// connect to database
+mongoose.connect(process.env.MONG_URI).then(() => {
+    // listen for requests
+    app.listen(process.env.PORT, () => {
+    console.log("Connected to database and listening on port")
+    })
+}).catch((error) => {
+    console.log(error)
 })
+
+
+
 
