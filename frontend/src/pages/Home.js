@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-
+import { useEffect } from "react"
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 // components
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from "../components/WorkoutForm"
@@ -7,8 +7,10 @@ import WorkoutForm from "../components/WorkoutForm"
 
 const Home = () => {
 
+    const {workouts, dispatch} = useWorkoutsContext()
+
     //update local state
-    const [workouts, setWorkouts] = useState(null)
+    // const [workouts, setWorkouts] = useState(null)
     // we shouldn't use async function outside like in useEffect layer.
     useEffect(() => {
         const fetchWorkouts = async() => {
@@ -17,7 +19,8 @@ const Home = () => {
 
             if (response.ok)
             {
-                setWorkouts(json)
+                dispatch({type: 'SET_WORKOUT', payload: json})
+                // setWorkouts(json)
             }
 
         }
