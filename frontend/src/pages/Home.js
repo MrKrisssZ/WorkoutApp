@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 
 // components
 import WorkoutDetails from '../components/WorkoutDetails'
+import WorkoutForm from "../components/WorkoutForm"
+
 
 const Home = () => {
 
@@ -30,8 +32,8 @@ const Home = () => {
                 {workouts && workouts.map((workout) => (
                     <WorkoutDetails key={workout._id} workout={workout} /> // properties inside this component and cycle through the workouts
                 ))}
-
             </div>
+            <WorkoutForm />
         </div>
     )
 }
