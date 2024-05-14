@@ -27,7 +27,7 @@ const Home = () => {
 
         fetchWorkouts()
 
-    }, []) // empty array means it will only fire once when the component first renders
+    }, [dispatch]) // empty array means it will only fire once when the component first renders
 
     return (
         <div className="home">
